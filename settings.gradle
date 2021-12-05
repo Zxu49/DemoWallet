@@ -1,2 +1,8 @@
 rootProject.name='DemoWallet'
-include ':app'
+include ':app', ':libraries:stores', ':libraries:core', ':libraries:crypto', ':libraries:http', ':libraries:databases', ':walletlink'
+project(':libraries:stores').projectDir = new File('walletlink-mobile-sdk/android/libraries/store/android/store')
+project(':libraries:core').projectDir = new File('walletlink-mobile-sdk/android/libraries/core/android/core')
+project(':libraries:crypto').projectDir = new File('walletlink-mobile-sdk/android/libraries/crypto/android/crypto')
+project(':libraries:http').projectDir = new File('walletlink-mobile-sdk/android/libraries/http/android/http')
+project(':libraries:databases').projectDir = new File('walletlink-mobile-sdk/android/libraries/database/android/databases')
+project(':walletlink').projectDir = new File('walletlink-mobile-sdk/android/walletlink')
