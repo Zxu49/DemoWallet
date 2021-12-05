@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linear_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    app:layout_constraintCircleRadius="20dp">
+
+        <TextView
+            android:id="@+id/read_contract_title"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/purple_700"
+            android:layout_marginBottom="5dp"
+            android:textSize="35dp"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center_horizontal"
+            android:textColor="@color/textColorSecond"
+            android:text="@string/read_contract_title" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:hint="@string/contract_address_hint"
+        android:layout_marginVertical="5dp"
+        android:layout_marginHorizontal="20dp"
+        android:textSize="20dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/address_input"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20dp"
+            android:inputType="text"
+            android:text="0x8394cDf176A4A52DA5889f7a99c4f7AD2BF59088"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ScrollView
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:padding="10dp"
+        android:background="@drawable/text_view_box"
+        android:layout_margin="5dp"
+        android:layout_marginHorizontal="20dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/contract_message"
+                android:text="@string/smart_contract_content_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColorHint"
+                android:textSize="20dp"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:id="@+id/twoButtonLayout">
+
+            <TextView
+                android:id="@+id/send_trading_close"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:gravity="center"
+                android:textColor="@color/textColorSecond"
+                android:background="@drawable/custom_button_3"
+                android:layout_margin="5dp"
+                android:paddingVertical="5dp"
+                android:textSize="25dp"
+                android:text="Close"
+                />
+
+            <TextView
+                android:id="@+id/send_ether_button"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/textColorSecond"
+                android:background="@drawable/custom_button_3"
+                android:layout_margin="5dp"
+                android:paddingVertical="5dp"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:text="Read" />
+
+        </LinearLayout>
+</LinearLayout>
