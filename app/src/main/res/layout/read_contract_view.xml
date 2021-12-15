@@ -24,11 +24,11 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
         android:hint="@string/contract_address_hint"
         android:layout_marginVertical="5dp"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="30dp"
         android:textSize="20dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -43,12 +43,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ScrollView
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:padding="10dp"
         android:background="@drawable/text_view_box"
-        android:layout_margin="5dp"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="5dp"
+        android:layout_marginHorizontal="30dp"
         >
 
         <LinearLayout
@@ -70,15 +70,18 @@
 
 
     <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
-            android:id="@+id/twoButtonLayout">
+            android:id="@+id/twoButtonLayout"
+            android:layout_marginVertical="5dp"
+            android:layout_marginHorizontal="30dp">
 
             <TextView
                 android:id="@+id/send_trading_close"
-                android:layout_width="170dp"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:gravity="center"
@@ -92,7 +95,8 @@
 
             <TextView
                 android:id="@+id/send_ether_button"
-                android:layout_width="170dp"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:textColor="@color/textColorSecond"

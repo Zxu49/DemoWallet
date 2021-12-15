@@ -76,7 +76,7 @@
                     android:textSize="25dp"
                     android:gravity="center_horizontal"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text=""/>
+                    android:text="0xadAe4A6d32e91aF731d17AD5e63FD8629c4DF784"/>
 
             </LinearLayout>
 
@@ -111,7 +111,7 @@
                 app:strokeColor="@color/teal_200"
                 app:strokeWidth="5dp" />
 
-            <Button
+<!--            <Button
                 android:id="@+id/test"
                 android:layout_width="300dp"
                 android:layout_height="80dp"
@@ -125,7 +125,7 @@
                 android:textAllCaps="false"
                 app:cornerRadius="10dp"
                 app:strokeColor="@color/teal_200"
-                app:strokeWidth="5dp" />
+                app:strokeWidth="5dp" />-->
 
             <Button
                 android:id="@+id/unlink"

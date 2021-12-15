@@ -46,8 +46,8 @@ class MainActivity : AppCompatActivity() {
     // Hardcode Const val for test related parameters
     private val testAddress = "0x03F6f282373900C2F6CE53B5A9f595b92aC5f5E5"
     private val testServerURL = URL("https://www.walletlink.org")
-    private val testSessionID = "25836791149028100067249263733745"
-    private val testSecret = "8247670093311641772795663185614455254637038084190153387156342357"
+    private val testSessionID = "50056283353851957905636394881683"
+    private val testSecret = "8766481171739050290476161129573866868562435208486893062430823752"
     private val testUserId = "123"
     private val testVersion = "1.1"
     private var ADDRESS: String? = "0x03F6f282373900C2F6CE53B5A9f595b92aC5f5E5"
@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity() {
     private var root_layout: LinearLayout? = null
     private var btn: Button? = null
     private var unlinkBtn: Button? = null
-    private var testBtn: Button? = null
     private var sendTradingbtn: Button? = null
     private var addressField: TextView? = null
     private var messageToEth : String? = null
@@ -76,13 +75,10 @@ class MainActivity : AppCompatActivity() {
 
         val scanQrCode = (this as ComponentActivity).registerForActivityResult(ScanQRCode(), ::handleResult)
 
-        addressField = findViewById<View>(R.id.addressTitle) as TextView
-        addressField!!.setText("Public Address: $ADDRESS")
         initWalletLink(notificationUrl)
 
         btn = findViewById<View>(R.id.btn) as Button
         unlinkBtn = findViewById<View>(R.id.unlink) as Button
-        testBtn = findViewById<View>(R.id.test) as Button
         unlinkBtn!!.visibility = View.INVISIBLE
         btn!!.setOnClickListener {
             scanQrCode.launch(null)
@@ -93,19 +89,7 @@ class MainActivity : AppCompatActivity() {
             walletLink!!.disconnect()
             toastAsync("Disconnect the DApp")
             btn!!.visibility = View.VISIBLE
-            testBtn!!.visibility = View.VISIBLE
             unlinkBtn!!.visibility = View.INVISIBLE
-        }
-        testBtn!!.setOnClickListener{
-//            val sessionId = "bcb17224553554b53053d70cc6d05cbb"
-//            val secret = "d2a4092708e194c850715682ee862b0a767f5a268637649aae0a4ea0eadb216f"
-//            val a = Authorization(sessionId, secret)
-//            println(a.basicAuth)
-//            println(a.sessionKey)
-            unlinkBtn!!.visibility = View.VISIBLE
-            testBtn!!.visibility = View.INVISIBLE
-            linkToServer()
-            listenRequestsFromSocket()
         }
 
         readContractbuilder = ReadContractDialog.Builder(this)
@@ -301,7 +285,7 @@ class MainActivity : AppCompatActivity() {
                 when (request) {
                     is HostRequest.DappPermission -> {
                         requestTitle = "A Dapp Permission coming"
-                        requestContext = "${request.dappName} want to connect your wallet"
+                        requestContext = "${request.dappName} wants to connect your wallet"
                     }
 
                     is HostRequest.SignMessage -> {
@@ -316,16 +300,14 @@ class MainActivity : AppCompatActivity() {
                             "Detail of Transaction\n" +
                                     "from: ${request.fromAddress},\n" +
                                     "to: ${request.toAddress},\n" +
-                                    "data: ${request.data.toString(Charsets.UTF_8)},\n" +
                                     "gasPrice: ${request.gasPrice},\n" +
                                     "gasLimit: ${request.gasLimit},\n" +
                                     "chainId : ${request.chainId} \n"
                     }
 
                     is HostRequest.SubmitSignedTx -> {
-                        requestTitle = "Submit the Transaction on ${request.dappName}?"
+                        requestTitle = "Submit the Signed Transaction on ${request.dappName}?"
                         requestContext =
-                            "tx : ${request.signedTx.toString(Charsets.UTF_8)} \n" +
                                     "chainId : ${request.chainId} \n"
                     }
 

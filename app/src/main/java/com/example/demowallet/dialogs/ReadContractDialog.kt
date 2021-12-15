@@ -63,13 +63,11 @@ class ReadContractDialog(context: Context) : Dialog(context) {
         }
 
         fun setCloseButton(listener: View.OnClickListener): Builder {
-//            this.singleButtonText = singleButtonText
             this.closeButtonClickListener = listener
             return this
         }
 
         fun setSendButton(listener: View.OnClickListener): Builder {
-//            this.singleButtonText = singleButtonText
             this.readButtonClickListener = listener
             return this
         }
@@ -83,11 +81,6 @@ class ReadContractDialog(context: Context) : Dialog(context) {
             layout.findViewById<View>(R.id.send_trading_close).setOnClickListener(closeButtonClickListener)
             layout.findViewById<View>(R.id.send_ether_button).setOnClickListener(readButtonClickListener)
 
-//            if (singleButtonText != null) {
-//                (layout.findViewById<View>(R.id.singleBtn) as TextView).text = singleButtonText
-//            } else {
-//                (layout.findViewById<View>(R.id.singleBtn) as TextView).text = "OK"
-//            }
             create()
             return dialog
         }
@@ -98,16 +91,12 @@ class ReadContractDialog(context: Context) : Dialog(context) {
                 (layout.findViewById<View>(R.id.content) as LinearLayout)
                     .addView(contentView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
             }
-//            else if (image != null) {
-//                (layout.findViewById<View>(R.id.imageView) as ImageView).setImageBitmap(image)
-//            }
             dialog.setContentView(layout)
             dialog.setCancelable(true)
             dialog.setCanceledOnTouchOutside(false)
         }
 
         private fun showButtons() {
-//            layout.findViewById<View>(R.id.singleButtonLayout).visibility = View.VISIBLE
             layout.findViewById<View>(R.id.twoButtonLayout).visibility = View.VISIBLE
         }
 
@@ -119,9 +108,6 @@ class ReadContractDialog(context: Context) : Dialog(context) {
             val thread = Thread {
                 try {
                     val greeter = Greeter.load(contractAddress, web3j, credentials, gasLimit, gasPrice)
-
-                    // check contract validity
-//                Log.d(TAG, " ${greeter.isValid}")
 
                     // read from contract
                     val greeting: Future<String>? = greeter.greet().sendAsync()

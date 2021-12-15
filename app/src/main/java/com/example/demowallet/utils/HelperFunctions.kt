@@ -23,7 +23,6 @@ class HelperFunctions {
         }
 
         fun toastAsync(context: Context, message: String?) {
-//            println(message)
             Handler(Looper.getMainLooper()).post {
                 Toast.makeText(context, message, Toast.LENGTH_LONG).show()
             }
