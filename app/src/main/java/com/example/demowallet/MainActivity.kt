@@ -97,11 +97,6 @@ class MainActivity : AppCompatActivity() {
             unlinkBtn!!.visibility = View.INVISIBLE
         }
         testBtn!!.setOnClickListener{
-//            val sessionId = "bcb17224553554b53053d70cc6d05cbb"
-//            val secret = "d2a4092708e194c850715682ee862b0a767f5a268637649aae0a4ea0eadb216f"
-//            val a = Authorization(sessionId, secret)
-//            println(a.basicAuth)
-//            println(a.sessionKey)
             unlinkBtn!!.visibility = View.VISIBLE
             testBtn!!.visibility = View.INVISIBLE
             linkToServer()
