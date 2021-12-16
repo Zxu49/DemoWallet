@@ -8,6 +8,7 @@ With the WalletLink SDK, your mobile wallet will be able to interact with DApps 
 
 For more info check [SDK](https://github.com/Zxu49/walletlink-mobile-sdk/tree/master/android)
 
+The origin [repo](https://github.com/walletlink/walletlink-mobile-sdk)
 
 ## Usage
 
