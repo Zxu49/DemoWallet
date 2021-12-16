@@ -3,7 +3,6 @@ package com.example.demowallet.dialogs
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
-import android.graphics.Bitmap
 import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
@@ -35,45 +34,72 @@ private val gasPrice: BigInteger = BigInteger.valueOf(4300000)
 // create credentials w/ your private key
 private val credentials = Credentials.create("f9319fe162c31947c0ca8fd649a536b7ca311b5f210afdc48b62fd7d18ce53e4")
 
+
+/**
+ * Dialog that allows the users to read greeting message of smart contract
+ */
 class ReadContractDialog(context: Context) : Dialog(context) {
 
-
+    /**
+     * Builder of the ReadContract Dialog, it will set up relevant parameters and listeners
+     */
     @SuppressLint("InflateParams")
     class Builder(context: Context) {
         private val TAG = "MyActivity ReadContractDialog"
 
         private var contentView: View? = null
-        private var image:Bitmap? = null
-        private var singleButtonText: String? = null
         private var closeButtonClickListener: View.OnClickListener? = null
         private var readButtonClickListener: View.OnClickListener? = null
 
         private val layout: View
         private val dialog: ReadContractDialog = ReadContractDialog(context)
 
+        /**
+         * Initialization function of the ReadContract Dialog Builder
+         */
         init {
             val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             inflater.inflate(R.layout.read_contract_view, null).also { layout = it }
             dialog.addContentView(layout, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
         }
 
-        fun setImage(bm : Bitmap ): Builder {
-            this.image = bm
-            return this
-        }
 
+        /**
+         * Set the OnClickListener of Close Button when users click it
+         *
+         * params
+         *  listener - OnClickListener that will close the dialog when users click it
+         *
+         * return
+         *  Builder - Builder of the ReadContract dialog
+         */
         fun setCloseButton(listener: View.OnClickListener): Builder {
-//            this.singleButtonText = singleButtonText
             this.closeButtonClickListener = listener
             return this
         }
 
+        /**
+         * Set the OnClickListener of Send Button when users click it
+         *
+         * params
+         *  listener - OnClickListener that will Send the greeting message to the smart contract
+         *  when users click it
+         *
+         * return
+         *  Builder - Builder of the ReadContract dialog
+         */
         fun setSendButton(listener: View.OnClickListener): Builder {
-//            this.singleButtonText = singleButtonText
             this.readButtonClickListener = listener
             return this
         }
 
+        /**
+         * Set the relevant configuration of the dialog, attach the listener to the button textviews
+         * and create a new ReadContract dialog from builders
+         *
+         * return
+         *  New ReadContract Dialog
+         */
         @RequiresApi(Build.VERSION_CODES.N)
         fun createDialog(): ReadContractDialog {
             showButtons()
@@ -82,35 +108,35 @@ class ReadContractDialog(context: Context) : Dialog(context) {
             }
             layout.findViewById<View>(R.id.send_trading_close).setOnClickListener(closeButtonClickListener)
             layout.findViewById<View>(R.id.send_ether_button).setOnClickListener(readButtonClickListener)
-
-//            if (singleButtonText != null) {
-//                (layout.findViewById<View>(R.id.singleBtn) as TextView).text = singleButtonText
-//            } else {
-//                (layout.findViewById<View>(R.id.singleBtn) as TextView).text = "OK"
-//            }
             create()
             return dialog
         }
 
+        /**
+         * Set properties of ReadContract Dialog
+         */
         private fun create() {
             if (contentView != null) {
                 (layout.findViewById<View>(R.id.content) as LinearLayout).removeAllViews()
                 (layout.findViewById<View>(R.id.content) as LinearLayout)
                     .addView(contentView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
             }
-//            else if (image != null) {
-//                (layout.findViewById<View>(R.id.imageView) as ImageView).setImageBitmap(image)
-//            }
             dialog.setContentView(layout)
             dialog.setCancelable(true)
             dialog.setCanceledOnTouchOutside(false)
         }
 
+        /**
+         * set the visibility of readContractLayout
+         */
         private fun showButtons() {
-//            layout.findViewById<View>(R.id.singleButtonLayout).visibility = View.VISIBLE
-            layout.findViewById<View>(R.id.twoButtonLayout).visibility = View.VISIBLE
+            layout.findViewById<View>(R.id.readContractLayout).visibility = View.VISIBLE
         }
 
+        /**
+         * Get the contract address and fetch the sign message from the smart contract
+         * specified by the users
+         */
         @RequiresApi(Build.VERSION_CODES.N)
         fun readSmartContract() {
             val contractAddress = HelperFunctions.getTextInput("$TAG contractAddress",
@@ -120,10 +146,6 @@ class ReadContractDialog(context: Context) : Dialog(context) {
                 try {
                     val greeter = Greeter.load(contractAddress, web3j, credentials, gasLimit, gasPrice)
 
-                    // check contract validity
-//                Log.d(TAG, " ${greeter.isValid}")
-
-                    // read from contract
                     val greeting: Future<String>? = greeter.greet().sendAsync()
                     val convertToString: String? = greeting?.get()
                     layout.findViewById<TextView>(R.id.contract_message).text = convertToString

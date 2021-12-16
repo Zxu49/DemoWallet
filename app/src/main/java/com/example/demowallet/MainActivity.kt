@@ -262,9 +262,15 @@ class MainActivity : AppCompatActivity() {
      * Web3 functions
      */
 
+    /**
+     * Build ReadContract Dialog from ReadContract Dialog Builer and set up
+     * relevant parameters and listeners. Then show it to the current activity
+     *
+     * params
+     *  onClickListener - OnClickListener that will close the sendTransaction Dialog
+     */
     @RequiresApi(Build.VERSION_CODES.N)
     private fun showReadContractDialog(onClickListener:View.OnClickListener) {
-
         readContractDialog = readContractbuilder!!
             .setCloseButton(onClickListener)
             .createDialog()
